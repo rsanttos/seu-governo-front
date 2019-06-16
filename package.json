@@ -1,11 +1,11 @@
 {
   "name": "static",
   "version": "1.0.0",
-  "description": "SigSaude",
+  "description": "Seu Governo",
   "main": "index.js",
   "dependencies": {
     "@statnett/vue-plotly": "^0.3.2",
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "date-fns": "^1.30.1",
     "format": "^0.2.2",
     "jquery": "^3.3.1",
