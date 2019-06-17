@@ -64,33 +64,64 @@ export default {
   },
   methods: {
     loadAnos(){ 
-      let uri = 'http://192.168.0.10:8080/api/anos'
+      let uri = 'http://localhost:8080/api/anos'
       this.$http.get(uri)
         .then((result) => {
           this.anos = result.body
         })    
     },
     loadMeses(){
-      let uri = 'http://192.168.0.10:8080/api/meses'
+      let uri = 'http://localhost:8080/api/meses'
       this.$http.get(uri)
         .then((result) => {
           this.meses = result.body
       })  
     },
     loadProgramas(){
-      let uri = 'http://192.168.0.10:8080/api/programas'
+      let uri = 'http://localhost:8080/api/programas'
       this.$http.get(uri)
         .then((result) => {
           this.programas = result.body
       })  
     },
     loadGrafico(){
-      let uri = 'http://192.168.0.10:8080/api/orcamentos'
-      this.$http.get(uri)
+      var requestBody = {}
+        console.log('possui anos', this.$store.state.anos)
+        console.log('possui meses', this.$store.state.meses)
+        console.log('possui programa', this.$store.state.programa)
+        console.log('possui categoria', this.$store.state.categoria)
+
+      if(this.$store.state.anos.length > 0){
+        console.log('possui anos', this.$store.state.anos)
+        requestBody.anos = this.$store.state.anos        
+      }
+
+      if(this.$store.state.meses.length > 0){
+        console.log('possui meses', this.$store.state.meses)
+        requestBody.meses = this.$store.state.meses        
+      }
+
+      if(this.$store.state.programa != null){
+        console.log('possui programa', this.$store.state.programa)
+        requestBody.programa_orcamentario = this.$store.state.programa        
+      }
+
+      if(this.$store.state.categoria != null){
+        console.log('possui categoria', this.$store.state.categoria)
+        requestBody.categoria = this.$store.state.categoria        
+      }
+
+      let uri = 'http://localhost:8080/api/orcamentos'
+
+      this.$http.post(uri, requestBody)
         .then((result) => {
           var orcamentos = result.body
           var traces = orcamentos.map(function(orcamento) {
-            var trace = {x: orcamento.meses, y: orcamento.orcamentos}
+            var trace = {
+              name: orcamento.ano, 
+              x: orcamento.meses, 
+              y: orcamento.orcamentos
+            }
             return trace
           })
           this.data = traces
