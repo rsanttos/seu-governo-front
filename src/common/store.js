@@ -5,19 +5,11 @@ Vue.use(Vuex);
 
 export const store = new Vuex.Store({
   state: {
-    anos : [
-      {
-        value: null
-      }
-    ],
-    meses : [
-      {
-        value: null
-      }
-    ],
-    programa : {
-      value: null
-    }    
+    anos : {},
+    meses : {},
+    programa : null ,
+    categoria: null,
+    uf: null  
   },
   mutations: {
     addAnos (state , valor) {
@@ -28,6 +20,12 @@ export const store = new Vuex.Store({
     },
     addPrograma (state , valor) {
       state.programa = valor
+    },
+    addCategoria (state , valor) {
+      state.categoria = valor
+    },
+    addUf (state , valor) {
+      state.uf = valor
     }
   },
   actions:{
@@ -39,6 +37,12 @@ export const store = new Vuex.Store({
     },
     addPrograma (context, valor) {
         context.commit('addPrograma', valor)
+    },
+    addCategoria (context, valor) {
+        context.commit('addCategoria', valor)
+    },
+    addUf (context, valor) {
+        context.commit('addUf', valor)
     }
   }
 })
