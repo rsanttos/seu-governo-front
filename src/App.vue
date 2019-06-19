@@ -147,7 +147,7 @@ export default {
           var orcamentos = result.body
           var traces = orcamentos.map(function(orcamento) {
             var trace = {
-              name: orcamento.ano, 
+              name: `${orcamento.categoria} - ${orcamento.ano}`, 
               x: orcamento.meses, 
               y: orcamento.orcamentos
             }

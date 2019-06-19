@@ -1,6 +1,7 @@
 <template>
     <v-container>
         <v-select
+            multiple
             :items="options"
             item-text="value"
             item-value="value"
